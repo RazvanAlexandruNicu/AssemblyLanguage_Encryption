@@ -1,0 +1,62 @@
+============================================================================
+NICU RAZVAN-ALEXANDRU 323CB 
+============================================================================
+
+============================== TASK 1 ======================================
+
+Pentru realizarea cerintei 1, am avut nevoie de o functie care obtine adresa
+de inceput a cheii. ( de dupa 0x00 ). Functia corespunzatoare taskului 1 a
+parcurs simultan cheia si stringul, caracter cu caracter, a realizat operatia
+logica xor intre cele 2 caractere, iar valoarea obtinut-o am introdus-o in
+tr-un nou string, a carui referinta am retinut-o in registrul ecx.
+
+============================== TASK 2 ======================================
+
+Functia corespunzatoare taskului 2 a parcurs caracter cu caracter stringul,
+a efectuat operatia xor intre primul si al doilea caracter, iar dupa, aceeasi
+operatie logica intre rezultatul anterior si urmatorul caracter din string.
+Am retinut in ecx referinta catre stringul obtinut dupa efectuarea operatiilor
+descrise mai sus.
+
+============================== TASK 3 ======================================
+
+Pentru realizarea cerintei 1, am avut nevoie de o functie care obtine adresa
+de inceput a cheii. ( de dupa 0x00 ). Functia corespunzatoare taskului 3 va
+parcurge cate 2 caractere din string si din cheie si va folosi o functie ce
+va realiza convertirea valorilor hexa ( ex 0xea -> 14*16 + 10 ). Dupa apela-
+rea functiei, voi avea valorile in decimal pentru cele doua grupari de carac-
+tere din string, respectiv cheie. Am efectuat xor intre cele doua valori, iar
+rezultatul il voi stoca intr-un string, a carui referinta o voi pastra in ecx.
+
+============================== TASK 4 ======================================
+
+Taskul 4, din punctul meu de vedere, a fost cel mai dificil dintre toate.
+Eu parcurg stringul codificat litera cu litera, si apelez o functie ce imi
+insereaza in edi un string reprezentand valoarea in binar a codificarii in
+base32 a literei/caracterului citit. de exemplu daca sunt la litera S, apelez
+functia de convertire, care va avea de introdus in EDI stringul '10010',
+cu operatii succesive de mutare a valorii '0' / '1' in AL si folosirea operatiei
+stosb pentru fiecare bit.
+Dupa ce in edi obtin stringul de forma -> '0010100....100', parcurg cate 8
+bytes din edi si folosind o alta functie, realizez convertirea unui byte in
+caracterul corespunzator. Functiile folosite la taskul asta sunt si motivul
+pentru care sursa mea are un numar INIMAGINABIL de linii. (in jur de 1100).
+I'm sorry :)
+============================== TASK 5 ======================================
+
+Pentru task-ul 5 am folosit o functie cu care am aflat valoare cheii (byte-ul
+folosit la codificarea stringului). Pornind de la hint-ul dat, am realizat xor
+intre primul caracter din string, pentru a obtine cheia, iar dupa, cu cheia ob-
+tinuta am incercat codificarea urmatoarelor 4 caractere. Daca acele codificari
+obtinute erau exact valorile 'orce', inseamna ca am gasit cheia si o voi folosi
+mai departe pentru decodificarea intregului string.
+
+============================== TASK 6 ======================================
+
+Pentru task-ul 6 am folosit o implementare simulara la taskurile 1 si 5, insa
+in momentul in care ajungeam cu pointerul la cheie catre null, resetam cheia
+si reincepeam parcurgerea de la inceputul cheii. Valoarea caracterului din cheie
+l-am transformat in intregul corespunzator ( am scazut 'a' ), iar apoi am realizat
+operatia de 'shiftare' a caracterului curent din string cu valoarea intregului obti-
+nut din cheie. Am construit un nou string, a carui referinta am salvat-o in registrul
+ecx. 
